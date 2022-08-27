@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Row({ guess }) {
+export default function Row({ guess, currentGuess }) {
 
     if (guess) {
         return (
