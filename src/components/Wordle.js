@@ -12,6 +12,9 @@ export default function Wordle( { solution }) {
     },[handleKeyup])
 
   return (
-    <div>current - {currentGuess}</div>
+    <div>
+        <div>Solution {solution}</div>
+        <div>current - {currentGuess}</div>
+    </div>
   )
 }

@@ -4,12 +4,34 @@ const useWordle = (solution) => {
     const [turn, setTurn] = useState(0) 
     const [currentGuess, setCurrentGuess] = useState('')
     const [guesses, setGuesses] = useState([]) // each guess is an array
-    const [history, setHistory] = useState([]) // each guess is a string
+    const [history, setHistory] = useState(['brave','hello']) // each guess is a string
     const [isCorrect, setIsCorrect] = useState(false)
     
     //format a guess into an array of letter objects
     //[{key: 'a', color: 'yellow'}]
     const formatGuess = () => {
+        let solutionArray = [...solution]
+        let formattedGuess = [...currentGuess].map((letter) => {
+            return { key:letter, color: 'grey' }
+        })
+
+        //find any green letters
+        formattedGuess.forEach((letter, i) =>{
+            if (solutionArray[i] === letter.key ) {
+                formattedGuess[i].color = 'green'
+                solutionArray[i] = null
+            }
+        })
+
+        //find any yellow colors
+        formattedGuess.forEach((letter, i) =>{
+            if (solutionArray.includes(letter.key) && letter.color !== 'green') {
+                formattedGuess[i].color = 'yellow'
+                solutionArray[solutionArray.indexOf(letter.key)] = null
+            }
+        })
+
+        return formattedGuess
 
     }
 
@@ -23,7 +45,7 @@ const useWordle = (solution) => {
     //handle keyup event & track current guess
     //if user press enter, add new guess
     const handleKeyup = ( {key} ) => {
-        if (key=== "Enter") =>{
+        if (key=== "Enter") {
             //conditions
             //only add guess is less the 5
             if (turn > 5) { 
@@ -36,11 +58,12 @@ const useWordle = (solution) => {
                 return
             }
             // check word is 5 characters long
-            if (currentGuess !== 5 ) {
+            if (currentGuess.length !== 5 ) {
                 console.log('words must be 5 chars long')
                 return
             }
-
+            const formatted = formatGuess()
+            console.log(formatted)
         }
 
         //removing last letter from current guess
