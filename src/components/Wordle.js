@@ -6,7 +6,8 @@ export default function Wordle( { solution }) {
 
     useEffect(()=>{
         window.addEventListener('keyup',handleKeyup)
-        console.log(currentGuess)
+
+        //cleanup for event listener
         return () => window.removeEventListener('keyup', handleKeyup)
     },[handleKeyup])
 

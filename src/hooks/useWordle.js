@@ -23,7 +23,25 @@ const useWordle = (solution) => {
     //handle keyup event & track current guess
     //if user press enter, add new guess
     const handleKeyup = ( {key} ) => {
-        //only add guess 
+        if (key=== "Enter") =>{
+            //conditions
+            //only add guess is less the 5
+            if (turn > 5) { 
+                console.log('you use all your guesses')
+                return
+            }
+            //do not allow duplicate words
+            if (history.includes(currentGuess)) {
+                console.log('you already tried that word')
+                return
+            }
+            // check word is 5 characters long
+            if (currentGuess !== 5 ) {
+                console.log('words must be 5 chars long')
+                return
+            }
+
+        }
 
         //removing last letter from current guess
         if ( key === "Backspace" ) {
