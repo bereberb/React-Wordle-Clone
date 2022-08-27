@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const useWordle (solution) => {
+const useWordle = (solution) => {
     const [turn, setTurn] = useState(0) 
     const [currentGuess, setCurrentGuess] = useState('')
     const [guesses, setGuesses] = useState([]) // each guess is an array
@@ -22,7 +22,24 @@ const useWordle (solution) => {
 
     //handle keyup event & track current guess
     //if user press enter, add new guess
-    const handleKeyup () => {
+    const handleKeyup = ( {key} ) => {
+        //only add guess 
+
+        //removing last letter from current guess
+        if ( key === "Backspace" ) {
+            setCurrentGuess((prev) =>{
+                return prev.slice(0,-1)
+            })
+        }
+
+        //to check if keypress are valid 
+        if (/^[A-Za-z]$/.test(key)) { 
+            if (currentGuess.length < 5 ) {
+                setCurrentGuess((prev) => {
+                    return prev + key
+                })
+            }
+        }
 
     }
 
