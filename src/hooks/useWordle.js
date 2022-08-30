@@ -59,7 +59,7 @@ const useWordle = (solution) => {
 
     //handle keyup event & track current guess
     //if user press enter, add new guess
-    const handleKeyup = ( {key} ) => {
+    const handleKeyup = ( {key} ) => { //key is for keyup event like e.target.key if not deconstructed
         if (key=== "Enter") {
             //conditions
             //only add guess is less the 5

@@ -4,7 +4,7 @@ import Row from './Row'
 export default function Grid({ currentGuess, guesses, turn}) {
   return (
     <div>
-        {guesses.map((g, i) => {
+        {guesses.map((g, i) => { //check in what turn
             if (turn === i) {
                 return <Row key={i} currentGuess={currentGuess}/>
 
